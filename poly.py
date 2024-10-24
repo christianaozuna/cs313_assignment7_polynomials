@@ -148,7 +148,7 @@ class LinkedList:
         result = LinkedList()
         current_self = self._head
 
-        while current.self is not None:
+        while current_self is not None:
             current_p = p.head
             while current_p is not None:
                 new_coeff = current_self.coeff * current_p.coeff
@@ -178,11 +178,11 @@ def main():
     poly_q = input()
     # get sum of p and q as a new linked list and print sum
     sum_result = LinkedList()
-    sum_result = p.add(q)
+    sum_result = poly_p.add(poly_q)
     print(f"Sum: {sum_result}")
     # get product of p and q as a new linked list and print product
     product_result = LinkedList()
-    product_result = p.mult(q)
+    product_result = poly_p.mult(poly_q)
     print(f"Product: {product_result}")
 
 
