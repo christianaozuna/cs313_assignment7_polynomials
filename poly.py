@@ -13,7 +13,7 @@ code to someone else), the case shall be submitted to the Office of the Dean of
 Students. Academic penalties up to and including an F in the course are likely.
 
 UT EID 1: jan3557
-UT EID 2: cmo
+UT EID 2: cmo2388
 """
 
 
@@ -112,30 +112,78 @@ class LinkedList:
     # If a term with that exponent already exists, add the coefficients together.
     # You must keep the terms in descending order by exponent.
     def insert_term(self, coeff, exp):
-        pass
+        prev = None
+        current = self.head
+        new_node = Node(coeff, exp)
+
+        if current.exp == 0:
+            return
+            
+        if current is not None and current.exp == exp:
+            current.coeff += coeff
+            if current.coeff == 0:
+                if prev is None:
+                    self._head = current.next
+                else:
+                    prev.next = current.next
+            current.exp = current.exp.next
+        else:
+            self.head = new_node
+
+        while current is not None and current.exp > exp:
+            prev = current
+            current = current.next
+        new_node.next = current
 
     # Add a polynomial p to the polynomial and return the resulting polynomial as a new linked list.
     def add(self, p):
-        pass
+        result = LinkedList()
+        new_node = Node(p)
+        self._head = new_node
+        result += self._head
+        return result
 
     # Multiply a polynomial p with the polynomial and return the product as a new linked list.
     def mult(self, p):
-        pass
+        result = LinkedList()
+        current_self = self._head
+
+        while current.self is not None:
+            current_p = p.head
+            while current_p is not None:
+                new_coeff = current_self.coeff * current_p.coeff
+                new_exp = current_self.exp * current_p.exp
+                result.insert_term(new_coeff, new_exp)
+                current_p = current_p.next
+            current_self = current_self.next
+        return result
+        
 
     # Return a string representation of the polynomial.
     def __str__(self):
-        pass
+        terms = []
+        current = self._head
 
+        while current is not None:
+            terms.append(f"({current.coeff})({current.exp})")
+            current = current.next
+        terms.append("None")
+        output = " -> ".join(terms)
+        return output
 
 def main():
     # read data from stdin using input() and create polynomial p
-
+    poly_p = input()
     # read data from stdin using input() and create polynomial q
-
+    poly_q = input()
     # get sum of p and q as a new linked list and print sum
-
+    sum_result = LinkedList()
+    sum_result = p.add(q)
+    print(f"Sum: {sum_result}")
     # get product of p and q as a new linked list and print product
-    pass
+    product_result = LinkedList()
+    product_result = p.mult(q)
+    print(f"Product: {product_result}")
 
 
 if __name__ == "__main__":
