@@ -112,33 +112,31 @@ class LinkedList:
     # If a term with that exponent already exists, add the coefficients together.
     # You must keep the terms in descending order by exponent.
     def insert_term(self, coeff, exp):
+        current = self._head
         prev = None
-        current = self.head
         new_node = Node(coeff, exp)
-
-        if current.exp == 0:
+        # if the coefficient is 0, do nothing
+        if coeff == 0:
             return
-            
-        if current is not None and current.exp == exp:
-            current.coeff += coeff
-            if current.coeff == 0:
-                if prev is None:
-                    self._head = current.next
-                else:
-                    prev.next = current.next
-            current.exp = current.exp.next
-        else:
-            self.head = new_node
-
+        # puts the new term in the correct descending position    
         while current is not None and current.exp > exp:
             prev = current
             current = current.next
+        if current is not None and current.exp == exp:
+            current.coeff += coeff
+            # if the summed coefficient is 0, remove the exponent
+            if current.coeff == 0:
+                current.exp = None
+            #current.exp = current.exp.next
+        else:
+            current = new_node
         new_node.next = current
 
     # Add a polynomial p to the polynomial and return the resulting polynomial as a new linked list.
     def add(self, p):
         result = LinkedList()
         new_node = Node(p)
+        # add new poly p to the polynomial
         self._head = new_node
         result += self._head
         return result
@@ -173,15 +171,25 @@ class LinkedList:
 
 def main():
     # read data from stdin using input() and create polynomial p
-    poly_p = input()
+    #data = sys.stdin.read.strip().split('\n')
+    p = input().split()
     # read data from stdin using input() and create polynomial q
-    poly_q = input()
+    q = input().split()
     # get sum of p and q as a new linked list and print sum
-    sum_result = LinkedList()
+    poly_p = LinkedList()
+    for i in range(len(p)):
+        coeff = int(p[i])
+        exp = int(p[i + 1])
+        poly_p.insert_term(coeff, exp)
+    poly_q = LinkedList()
+    for i in range(len(q)):
+        coeff = int(q[i])
+        exp = int(q[i + 1])
+        poly_q.insert_term(coeff, exp)
     sum_result = poly_p.add(poly_q)
     print(f"Sum: {sum_result}")
     # get product of p and q as a new linked list and print product
-    product_result = LinkedList()
+    
     product_result = poly_p.mult(poly_q)
     print(f"Product: {product_result}")
 
