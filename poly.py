@@ -199,21 +199,19 @@ def main():
     q = input().split()
     # get sum of p and q as a new linked list and print sum
     poly_p = LinkedList()
-    for i in range(len(p)):
+    for i in range(0, len(p), 2):
         coeff = int(p[i])
         exp = int(p[i + 1])
         poly_p.insert_term(coeff, exp)
     poly_q = LinkedList()
-    for i in range(len(q)):
+    for i in range(0, len(q), 2):
         coeff = int(q[i])
         exp = int(q[i + 1])
         poly_q.insert_term(coeff, exp)
     sum_result = poly_p.add(poly_q)
     print(f"Sum: {sum_result}")
-    # get product of p and q as a new linked list and print product
     product_result = poly_p.mult(poly_q)
     print(f"Product: {product_result}")
-
 
 if __name__ == "__main__":
     main()
