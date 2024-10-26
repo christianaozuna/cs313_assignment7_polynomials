@@ -115,7 +115,6 @@ class LinkedList:
         # if the coefficient is 0, do nothing
         if coeff == 0:
             return
-        
         new_node = Node(coeff, exp)
         current = self.head
         prev = None
@@ -156,31 +155,32 @@ class LinkedList:
 
     # Multiply a polynomial p with the polynomial and return the product as a new linked list.
     def mult(self, p):
+        if self.head is None or p.head is None:
+            return LinkedList()
         result = LinkedList()
         current_self = self.head
-
         while current_self is not None:
             current_p = p.head
             while current_p is not None:
                 new_coeff = current_self.coeff * current_p.coeff
-                new_exp = current_self.exp * current_p.exp
+                new_exp = current_self.exp + current_p.exp
                 result.insert_term(new_coeff, new_exp)
                 current_p = current_p.next
-            current_self = current_self.next
-        return result       
+
+        current_self = current_self.next
+
+        return result
 
     # Return a string representation of the polynomial.
     def __str__(self):
         if self.head is None:
             return ""
-        
         terms = []
         current = self.head
         while current is not None:
             if current.coeff != 0:
                 terms.append(f"({current.coeff}, {current.exp})")
                 current = current.next
-                
         return " + ".join(terms)
 
 def main():
@@ -203,7 +203,6 @@ def main():
     sum_result = poly_p.add(poly_q)
     print(f"Sum: {sum_result}")
     # get product of p and q as a new linked list and print product
-    
     product_result = poly_p.mult(poly_q)
     print(f"Product: {product_result}")
 
