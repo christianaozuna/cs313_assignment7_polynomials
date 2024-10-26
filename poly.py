@@ -97,6 +97,7 @@ class Node:
 
 
 class LinkedList:
+    """You will represent a polynomial as a linked list."""
     def __init__(self):
         # You are also welcome to use a sentinel/dummy node!
         # It is definitely recommended, which will we learn more
@@ -112,6 +113,7 @@ class LinkedList:
     # If a term with that exponent already exists, add the coefficients together.
     # You must keep the terms in descending order by exponent.
     def insert_term(self, coeff, exp):
+        """Insert the term with the coefficient coeff and exponent exp into the polynomial."""
         # if the coefficient is 0, do nothing
         if coeff == 0:
             return
@@ -141,6 +143,8 @@ class LinkedList:
 
     # Add a polynomial p to the polynomial and return the resulting polynomial as a new linked list.
     def add(self, p):
+        """Add a polynomial p to the polynomial and return the \\
+              resulting polynomial as a new linked list."""
         result = LinkedList()
         current = self.head
         while current is not None:
@@ -155,6 +159,8 @@ class LinkedList:
 
     # Multiply a polynomial p with the polynomial and return the product as a new linked list.
     def mult(self, p):
+        """Multiply a polynomial p with the polynomial and return \\
+              the product as a new linked list."""
         if self.head is None or p.head is None:
             return LinkedList()
         result = LinkedList()
@@ -167,7 +173,7 @@ class LinkedList:
                 result.insert_term(new_coeff, new_exp)
                 current_p = current_p.next
 
-        current_self = current_self.next
+            current_self = current_self.next
 
         return result
 
@@ -184,6 +190,8 @@ class LinkedList:
         return " + ".join(terms)
 
 def main():
+    """Read data from test files from standard input (stdin) using input() \\
+        and reates polynomials p and q"""
     # read data from stdin using input() and create polynomial p
     #data = sys.stdin.read.strip().split('\n')
     p = input().split()
