@@ -193,23 +193,32 @@ def main():
     """Read data from test files from standard input (stdin) using input() \\
         and reates polynomials p and q"""
     # read data from stdin using input() and create polynomial p
-    #data = sys.stdin.read.strip().split('\n')
+    # data = sys.stdin.read.strip().split('\n')
     poly_p = LinkedList()
+    # how many terms
     line = input().strip()
+    # repeat # of terms times
     if line:
         num_terms_p = int(line)
         for _ in range(num_terms_p):
             coeff_exp = input().strip()
-            coeff, exp = map(int, coeff_exp.split())
+            coeff_str, exp_str = coeff_exp.split()
+            coeff = int(coeff_str)
+            exp = int(exp_str)
             poly_p.insert_term(coeff, exp)
+    # empty line
     input()
+    # read data from stdin using input() and create polynomial p
     poly_q = LinkedList()
     line = input().strip()
+    # repeat for poly q
     if line:
         num_terms_q = int(line)
         for _ in range(num_terms_q):
             coeff_exp = input().strip()
-            coeff, exp = map(int, coeff_exp.split())
+            coeff_str, exp_str = coeff_exp.split()
+            coeff = int(coeff_str)
+            exp = int(exp_str)
             poly_q.insert_term(coeff, exp)
 
     sum_result = poly_p.add(poly_q)
