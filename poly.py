@@ -194,24 +194,29 @@ def main():
         and reates polynomials p and q"""
     # read data from stdin using input() and create polynomial p
     #data = sys.stdin.read.strip().split('\n')
-    p = input().split()
-    # read data from stdin using input() and create polynomial q
-    q = input().split()
-    # get sum of p and q as a new linked list and print sum
     poly_p = LinkedList()
-    for i in range(0, len(p), 2):
-        coeff = int(p[i])
-        exp = int(p[i + 1])
-        poly_p.insert_term(coeff, exp)
+    line = input().strip()
+    if line:
+        num_terms_p = int(line)
+        for _ in range(num_terms_p):
+            coeff_exp = input().strip()
+            coeff, exp = map(int, coeff_exp.split())
+            poly_p.insert_term(coeff, exp)
+    input()
     poly_q = LinkedList()
-    for i in range(0, len(q), 2):
-        coeff = int(q[i])
-        exp = int(q[i + 1])
-        poly_q.insert_term(coeff, exp)
+    line = input().strip()
+    if line:
+        num_terms_q = int(line)
+        for _ in range(num_terms_q):
+            coeff_exp = input().strip()
+            coeff, exp = map(int, coeff_exp.split())
+            poly_q.insert_term(coeff, exp)
+
     sum_result = poly_p.add(poly_q)
-    print(f"Sum: {sum_result}")
+    print(sum_result)
+
     product_result = poly_p.mult(poly_q)
-    print(f"Product: {product_result}")
+    print(product_result)
 
 if __name__ == "__main__":
     main()
